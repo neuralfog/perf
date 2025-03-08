@@ -1,0 +1,48 @@
+.primary {
+    color: var(--primary);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.index {
+    background-color: var(--primary);
+    color: var(--main);
+    width: 2rem;
+    line-height: 1.5rem;
+    text-align: center;
+    border-radius: var(--border-radius);
+    font-size: 0.75rem;
+    font-weight: 700;
+    position: absolute;
+    top: -0.3rem;
+    left: -0.3rem;
+}
+
+.label {
+    color: grey;
+    font-size: 0.75rem;
+}
+
+.card {
+    position: relative;
+    background-color: var(--lighter);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    width: 10rem;
+    text-align: center;
+    z-index: 1;
+
+    &:hover {
+        scale: 1.2;
+        transition: 0.1s scale ease-in-out;
+        cursor: pointer;
+        z-index: 2;
+        box-shadow:
+            rgba(0, 0, 0, 0.25) 0px 54px 55px,
+            rgba(0, 0, 0, 0.12) 0px -12px 30px,
+            rgba(0, 0, 0, 0.12) 0px 4px 6px,
+            rgba(0, 0, 0, 0.17) 0px 12px 13px,
+            rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    }
+}
