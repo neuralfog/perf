@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cd ~/dev/theme/ && npm run clean && npm run build
+cd ~/dev/perf/ && npm install --save "$(npm pack ~/dev/theme/)"

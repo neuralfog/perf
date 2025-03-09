@@ -8,6 +8,7 @@ import css from './main-app.scss?inline';
 
 import './Card';
 import './Controls';
+import './Header';
 
 @component({ signals: [store, config], styles: [css] })
 export class MainApp extends Component {
@@ -36,6 +37,7 @@ export class MainApp extends Component {
 
     template(): Template {
         return html`
+                <app-header />
                 <app-controls />
                 <div class="main-wrapper">
                     ${repeat(

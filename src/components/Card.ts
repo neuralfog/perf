@@ -11,8 +11,10 @@ type Test1Prop = {
     index: number;
 };
 
+class UiComponent<T> extends Component<T> {}
+
 @component({ tag: 'test-one', signals: [store], styles: [css] })
-export class Test1 extends Component<Test1Prop> {
+export class Test1 extends UiComponent<Test1Prop> {
     @state()
     state = {
         string: 'State Value',
