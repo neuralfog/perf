@@ -1,8 +1,10 @@
-import { defineConfig } from "vite";
+import { defineConfig } from 'vite';
+import elemixPlugin from '@neuralfog/elemix-vite-plugin';
 
 export default defineConfig({
-  esbuild: {
-    minifyIdentifiers: false,
-    keepNames: true,
-  },
+    plugins: [elemixPlugin()],
+    esbuild: {
+        minifyIdentifiers: false,
+        keepNames: true,
+    },
 });

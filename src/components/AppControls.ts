@@ -1,45 +1,46 @@
-import { Component, html, type Template } from "@neuralfog/elemix";
-import { component, state } from "@neuralfog/elemix/decorators";
+import { Component, html, type Template } from '@neuralfog/elemix';
+import { component, state } from '@neuralfog/elemix/decorators';
 
-import gear from "../static/gear.svg";
-import css from "./controls.scss?inline";
-import { config } from "../signals/config";
+import gear from '../static/gear.svg';
+import css from './controls.scss?inline';
+import { config } from '../signals/config';
 
 @component({ styles: [css], signals: [config] })
 export class AppControls extends Component {
-  @state()
-  state = {
-    visible: false,
-  };
+    @state()
+    state = {
+        visible: false,
+    };
 
-  toggleVisible = (): void => {
-    // throw new Error("hola");
-    this.state.visible = !this.state.visible;
-  };
+    toggleVisible = (): void => {
+        // throw new Error("hola");
+        this.state.visible = !this.state.visible;
+    };
 
-  onInput = (e: Event): void => {
-    const { value } = e.target as HTMLInputElement;
-    config.value.componentCount = Number(value);
-  };
+    onInput = (e: Event): void => {
+        const { value } = e.target as HTMLInputElement;
+        config.value.componentCount = Number(value);
+    };
 
-  onPropsClick = (): void => {
-    config.value.props = !config.value.props;
-  };
+    onPropsClick = (): void => {
+        config.value.props = !config.value.props;
+    };
 
-  onSignalClick = (): void => {
-    config.value.signal = !config.value.signal;
-  };
+    onSignalClick = (): void => {
+        config.value.signal = !config.value.signal;
+    };
 
-  onStateClick = (): void => {
-    config.value.internalState = !config.value.internalState;
-  };
+    onStateClick = (): void => {
+        config.value.internalState = !config.value.internalState;
+    };
 
-  template(): Template {
-    return html`<button @click=${this.toggleVisible} class="button">
+    template(): Template {
+        return html`<button @click=${this.toggleVisible} class="button">
         <img class="image" src=${gear} alt="Controls" />
       </button>
-      ${this.state.visible
-        ? html`<div class="control-panel">
+      ${
+          this.state.visible
+              ? html`<div class="control-panel">
             <div class="primary">Controls</div>
             <div>
               <label class="label">Component Count:</label>
@@ -72,6 +73,7 @@ export class AppControls extends Component {
               </div>
             </div>
           </div>`
-        : html``}`;
-  }
+              : html``
+      }`;
+    }
 }

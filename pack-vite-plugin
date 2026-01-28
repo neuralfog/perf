@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cd ~/dev/elemix-typescript/packages/elemix-vite-plugin/ && npm run clean && npm run build
+cd ~/dev/perf/ && npm install --save-dev "$(npm pack ~/dev/elemix-typescript/packages/elemix-vite-plugin/)"

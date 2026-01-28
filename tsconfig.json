@@ -1,4 +1,10 @@
 {
     "extends": "@neuralfog/ts-config/index.json",
-    "include": ["."]
+    "include": ["."],
+    "exclude": ["dist/**/*"],
+    "compilerOptions": {
+        "paths": {
+            "#src/*": ["./src/*"]
+        }
+    }
 }
