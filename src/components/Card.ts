@@ -1,59 +1,59 @@
-import { Component, html, type Template } from '@neuralfog/elemix';
-import { component, state } from '@neuralfog/elemix/decorators';
-import { store } from '../signals/signal';
+import { Component, html, type Template } from "@neuralfog/elemix";
+import { component, state } from "@neuralfog/elemix/decorators";
+import { store } from "../signals/signal";
 
-import css from './card.scss?inline';
-import { config } from '../signals/config';
+import css from "./card.scss?inline";
+import { config } from "../signals/config";
 
 type Test1Prop = {
-    color: string;
-    size: string;
-    index: number;
+  color: string;
+  size: string;
+  index: number;
 };
 
 class UiComponent<T> extends Component<T> {}
 
-@component({ tag: 'test-one', signals: [store], styles: [css] })
-export class Test1 extends UiComponent<Test1Prop> {
-    @state()
-    state = {
-        string: 'State Value',
-    };
+@component({ signals: [store], styles: [css] })
+export class AppCard extends UiComponent<Test1Prop> {
+  @state()
+  state = {
+    string: "State Value",
+  };
 
-    animationFrameId: number | null = null;
+  animationFrameId: number | null = null;
 
-    run = (): void => {
-        if (config.value.internalState) {
-            this.state.string = (Math.random() + 1).toString(36).substring(7);
-        }
-        this.animationFrameId = requestAnimationFrame(this.run);
-    };
-
-    onMount(): void {
-        this.run();
+  run = (): void => {
+    if (config.value.internalState) {
+      this.state.string = (Math.random() + 1).toString(36).substring(7);
     }
+    this.animationFrameId = requestAnimationFrame(this.run);
+  };
 
-    onDispose(): void {
-        if (this.animationFrameId !== null) {
-            cancelAnimationFrame(this.animationFrameId);
-            this.animationFrameId = null;
-        }
-    }
+  onMount(): void {
+    this.run();
+  }
 
-    template(): Template {
-        return html`
-            <div class="card">
-                <div class="index">${this.props.index + 1}</div>
-                <div class="label">Signal:</div>
-                <p class="primary">${store.value.name}</p>
-                <div class="label" style="margin-top: 0.5rem">Local State:</div>
-                <p>${this.state.string}</p>
-                <div class="label" style="margin-top: 0.5rem">Props:</div>
-                <div>
-                    <p>${this.props.size}</p>
-                    <p>${this.props.color}</p>
-                </div>
-            </div>
-        `;
+  onDispose(): void {
+    if (this.animationFrameId !== null) {
+      cancelAnimationFrame(this.animationFrameId);
+      this.animationFrameId = null;
     }
+  }
+
+  template(): Template {
+    return html`
+      <div class="card">
+        <div class="index">${this.props.index + 1}</div>
+        <div class="label">Signal:</div>
+        <p class="primary">${store.value.name}</p>
+        <div class="label" style="margin-top: 0.5rem">Local State:</div>
+        <p>${this.state.string}</p>
+        <div class="label" style="margin-top: 0.5rem">Props:</div>
+        <div>
+          <p>${this.props.size}</p>
+          <p>${this.props.color}</p>
+        </div>
+      </div>
+    `;
+  }
 }
