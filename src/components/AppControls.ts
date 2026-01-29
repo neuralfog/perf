@@ -1,9 +1,9 @@
 import { Component, html, type Template } from '@neuralfog/elemix';
 import { component, state } from '@neuralfog/elemix/decorators';
 
-import gear from '../static/gear.svg';
-import css from './controls.scss?inline';
-import { config } from '../signals/config';
+import gear from '#src/static/gear.svg';
+import css from '#src/components/AppControls.scss?inline';
+import { config } from '#src/signals/config';
 
 @component({ styles: [css], signals: [config] })
 export class AppControls extends Component {
@@ -13,7 +13,6 @@ export class AppControls extends Component {
     };
 
     toggleVisible = (): void => {
-        // throw new Error("hola");
         this.state.visible = !this.state.visible;
     };
 

@@ -1,18 +1,15 @@
 import { Component, html, type Template } from '@neuralfog/elemix';
 import { component, state } from '@neuralfog/elemix/decorators';
 import { repeat } from '@neuralfog/elemix/directives';
-import { store } from '../signals/signal';
-import { config } from '../signals/config';
 
-import css from './main-app.scss?inline';
+import { store } from '#src/signals/signal';
+import { config } from '#src/signals/config';
 
-// @Note this will gets sorted with auto imports and code generation!!
-// shame as LSP was a nice touch but fuck this to much headache!!
-// It will also solve fucking issue with unused import
-// keep it simple!!
-import { AppCard } from './AppCard';
-import { AppControls } from './AppControls';
-import { AppHeader } from './AppHeader';
+import css from '#src/components/MainApp.scss?inline';
+
+import '#src/components/AppControls';
+import '#src/components/AppHeader';
+import '#src/components/AppCard';
 
 @component({ signals: [store, config], styles: [css] })
 export class MainApp extends Component {

@@ -6,7 +6,8 @@
     "type": "module",
     "scripts": {
         "dev": "vite --host",
-        "build": "npm run lint && vite build",
+        "preview": "vite preview",
+        "build": "vite build",
         "lint": "tsc --noEmit && biome format && biome lint",
         "lint:fix": "biome format --write . && biome lint --write . && tsc --noEmit"
     },

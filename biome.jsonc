@@ -5,5 +5,5 @@
     },
     "formatter": {
         "ignore": ["node_modules/**/*", "dist/**/*"]
-    },
+    }
 }

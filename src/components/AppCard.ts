@@ -1,9 +1,9 @@
 import { Component, html, type Template } from '@neuralfog/elemix';
 import { component, state } from '@neuralfog/elemix/decorators';
-import { store } from '../signals/signal';
 
-import css from './card.scss?inline';
-import { config } from '../signals/config';
+import { store } from '#src/signals/signal';
+import css from '#src/components/AppCard.scss?inline';
+import { config } from '#src/signals/config';
 
 type AppCardProps = {
     color: string;
@@ -11,10 +11,8 @@ type AppCardProps = {
     index: number;
 };
 
-class UiComponent<T> extends Component<T> {}
-
 @component({ signals: [store], styles: [css] })
-export class AppCard extends UiComponent<AppCardProps> {
+export class AppCard extends Component<AppCardProps> {
     @state()
     state = {
         string: 'State Value',
