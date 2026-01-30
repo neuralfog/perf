@@ -14,7 +14,6 @@
     "devDependencies": {
         "@neuralfog/biome-config": "0.1.2",
         "@neuralfog/elemix": "file:neuralfog-elemix-0.1.8.tgz",
-        "@neuralfog/elemix-vite-plugin": "file:neuralfog-elemix-vite-plugin-0.2.2.tgz",
         "@neuralfog/theme-provider": "0.1.0",
         "@neuralfog/ts-config": "0.1.1",
         "sass-embedded": "1.85.1",

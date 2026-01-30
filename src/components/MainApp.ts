@@ -51,13 +51,13 @@ export class MainApp extends Component {
 
     template(): Template {
         return html`
-          <AppHeader />
-          <AppControls />
+          <app-header />
+          <app-controls />
           <div class="main-wrapper">
             ${repeat(
                 this.getIndices(config.value.componentCount),
                 (_, index) =>
-                    html`<AppCard
+                    html`<app-card
                         :index=${index}
                         :color=${this.state.color}
                         :size=${this.state.size}
