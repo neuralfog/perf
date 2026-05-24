@@ -35,7 +35,7 @@ export class AppControls extends Component {
 
     template(): Template {
         return html`<button @click=${this.toggleVisible} class="button">
-        <img class="image" src=${gear} alt="Controls" />
+        <img class="image" src=${gear} alt="Controls">
       </button>
       ${
           this.state.visible
@@ -48,7 +48,7 @@ export class AppControls extends Component {
                 class="input"
                 @input=${this.onInput}
                 value=${config.value.componentCount}
-              />
+              >
             </div>
             <div class="primary" style="margin-top: 1rem;">Updates</div>
             <div class="button-wrapper">

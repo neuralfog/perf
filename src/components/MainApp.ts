@@ -51,8 +51,8 @@ export class MainApp extends Component {
 
     template(): Template {
         return html`
-          <app-header />
-          <app-controls />
+          <app-header></app-header>
+          <app-controls></app-controls>
           <div class="main-wrapper">
             ${repeat(
                 this.getIndices(config.value.componentCount),
@@ -61,7 +61,7 @@ export class MainApp extends Component {
                         :index=${index}
                         :color=${this.state.color}
                         :size=${this.state.size}
-                    />`,
+                    ></app-card>`,
                 (val) => String(val),
             )}
           </div>
