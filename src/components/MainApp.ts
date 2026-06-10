@@ -1,23 +1,28 @@
-import { Component, html, type Template } from '@neuralfog/elemix';
-import { component, state } from '@neuralfog/elemix/decorators';
+import {
+    Component,
+    defineComponent,
+    html,
+    type Template,
+} from '@neuralfog/elemix';
+import { state } from '@neuralfog/elemix/state';
 import { repeat } from '@neuralfog/elemix/directives';
 
 import { store } from '#src/signals/signal';
 import { config } from '#src/signals/config';
 
+import reset from '#src/scss/reset.scss?inline';
 import css from '#src/components/MainApp.scss?inline';
 
-import '#src/components/AppControls';
 import '#src/components/AppHeader';
 import '#src/components/AppCard';
 
-@component({ signals: [store, config], styles: [css] })
 export class MainApp extends Component {
-    @state()
-    state = {
+    static styles = [reset, css];
+
+    state = state({
         color: 'color',
         size: 'size',
-    };
+    });
 
     run = (): void => {
         if (config.value.props) {
@@ -52,8 +57,7 @@ export class MainApp extends Component {
     template(): Template {
         return html`
           <app-header></app-header>
-          <app-controls></app-controls>
-          <div class="main-wrapper">
+          <div class="grid">
             ${repeat(
                 this.getIndices(config.value.componentCount),
                 (_, index) =>
@@ -68,3 +72,5 @@ export class MainApp extends Component {
         `;
     }
 }
+
+defineComponent('main-app', MainApp);

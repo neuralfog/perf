@@ -1,7 +1,37 @@
-.main-wrapper {
-    padding: 15px;
+:host {
     display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+}
+
+.grid {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    grid-auto-rows: 1fr;
+    gap: 14px;
+    align-content: start;
+}
+
+.grid::-webkit-scrollbar {
+    width: 12px;
+}
+
+.grid::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 999px;
+    border: 3px solid var(--bg);
+}
+
+.grid::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+.grid::-webkit-scrollbar-track {
+    background: transparent;
 }

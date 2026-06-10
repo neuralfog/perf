@@ -1,0 +1,4 @@
+allowBuilds:
+  '@biomejs/biome': true
+minimumReleaseAgeExclude:
+  - '@neuralfog/elemix@0.8.1'

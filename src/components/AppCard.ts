@@ -1,7 +1,13 @@
-import { Component, html, type Template } from '@neuralfog/elemix';
-import { component, state } from '@neuralfog/elemix/decorators';
+import {
+    Component,
+    defineComponent,
+    html,
+    type Template,
+} from '@neuralfog/elemix';
+import { state } from '@neuralfog/elemix/state';
 
 import { store } from '#src/signals/signal';
+import reset from '#src/scss/reset.scss?inline';
 import css from '#src/components/AppCard.scss?inline';
 import { config } from '#src/signals/config';
 
@@ -11,12 +17,12 @@ type AppCardProps = {
     index: number;
 };
 
-@component({ signals: [store], styles: [css] })
 export class AppCard extends Component<AppCardProps> {
-    @state()
-    state = {
+    static styles = [reset, css];
+
+    state = state({
         string: 'State Value',
-    };
+    });
 
     animationFrameId: number | null = null;
 
@@ -39,19 +45,25 @@ export class AppCard extends Component<AppCardProps> {
     }
 
     template(): Template {
-        return html`
-      <div class="card">
-        <div class="index">${this.props.index + 1}</div>
-        <div class="label">Signal:</div>
-        <p class="primary">${store.value.name}</p>
-        <div class="label" style="margin-top: 0.5rem">Local State:</div>
-        <p>${this.state.string}</p>
-        <div class="label" style="margin-top: 0.5rem">Props:</div>
-        <div>
-          <p>${this.props.size}</p>
-          <p>${this.props.color}</p>
-        </div>
-      </div>
-    `;
+        return html`<div class="card">
+            <span class="index">${this.props.index + 1}</span>
+            <div class="field">
+                <span class="label">Signal</span>
+                <span class="value accent">${store.value.name}</span>
+            </div>
+            <div class="field">
+                <span class="label">State</span>
+                <span class="value">${this.state.string}</span>
+            </div>
+            <div class="field">
+                <span class="label">Props</span>
+                <div class="props">
+                    <span class="chip">${this.props.size}</span>
+                    <span class="chip">${this.props.color}</span>
+                </div>
+            </div>
+        </div>`;
     }
 }
+
+defineComponent('app-card', AppCard);

@@ -4,6 +4,7 @@
     "license": "MIT",
     "author": "brownhounds",
     "type": "module",
+    "packageManager": "pnpm@11.5.2",
     "scripts": {
         "dev": "vite --host",
         "preview": "vite preview",
@@ -12,9 +13,9 @@
         "lint:fix": "biome format --write . && biome lint --write . && tsc --noEmit"
     },
     "devDependencies": {
+        "@biomejs/biome": "1.9.4",
         "@neuralfog/biome-config": "0.1.2",
-        "@neuralfog/elemix": "0.2.0",
-        "@neuralfog/theme-provider": "0.1.0",
+        "@neuralfog/elemix": "0.8.1",
         "@neuralfog/ts-config": "0.1.2",
         "sass-embedded": "1.100.0",
         "typescript": "6.0.3",

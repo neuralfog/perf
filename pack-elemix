@@ -1,4 +1,0 @@
-#!/bin/bash
-
-cd ~/dev/elemix/ && npm run clean && npm run build
-cd ~/dev/perf/ && npm install --save "$(npm pack ~/dev/elemix/)"
