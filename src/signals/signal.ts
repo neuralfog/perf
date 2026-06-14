@@ -1,8 +1,8 @@
-import { signal } from '@neuralfog/elemix/signal';
+import { state } from '@neuralfog/elemix';
 
-export const store = signal({
+export const store = state({
     name: 'Signal Value',
 });
 
-(window as any).store = store.value;
+(window as any).store = store;
 (window as any).storeInstance = store;

@@ -1,6 +1,6 @@
-import { signal } from '@neuralfog/elemix/signal';
+import { state } from '@neuralfog/elemix';
 
-export const config = signal({
+export const config = state({
     componentCount: 100,
     signal: false,
     internalState: false,

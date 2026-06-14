@@ -1,11 +1,11 @@
 import {
     Component,
     defineComponent,
-    html,
-    type Template,
+    repeat,
+    state,
+    tpl,
 } from '@neuralfog/elemix';
-import { state } from '@neuralfog/elemix/state';
-import { repeat } from '@neuralfog/elemix/directives';
+import type { Template } from '@neuralfog/elemix/types';
 
 import { store } from '#src/signals/signal';
 import { config } from '#src/signals/config';
@@ -25,13 +25,13 @@ export class MainApp extends Component {
     });
 
     run = (): void => {
-        if (config.value.props) {
+        if (config.props) {
             this.state.color = (Math.random() + 1).toString(36).substring(7);
             this.state.size = (Math.random() + 1).toString(36).substring(7);
         }
 
-        if (config.value.signal) {
-            store.value.name = (Math.random() + 1).toString(36).substring(7);
+        if (config.signal) {
+            store.name = (Math.random() + 1).toString(36).substring(7);
         }
 
         requestAnimationFrame(this.run);
@@ -54,23 +54,21 @@ export class MainApp extends Component {
         return this.indices;
     }
 
-    template(): Template {
-        return html`
-          <app-header></app-header>
-          <div class="grid">
-            ${repeat(
-                this.getIndices(config.value.componentCount),
-                (_, index) =>
-                    html`<app-card
-                        :index=${index}
-                        :color=${this.state.color}
-                        :size=${this.state.size}
-                    ></app-card>`,
-                (val) => String(val),
-            )}
-          </div>
-        `;
-    }
+    template = (): Template => tpl`
+        <app-header></app-header>
+        <div class="grid">
+          ${repeat(
+              this.getIndices(config.componentCount),
+              (_, index) =>
+                  tpl`<app-card
+                      :index=${index}
+                      :color=${this.state.color}
+                      :size=${this.state.size}
+                  ></app-card>`,
+              (val) => String(val),
+          )}
+        </div>
+    `;
 }
 
 defineComponent('main-app', MainApp);
