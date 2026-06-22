@@ -1,14 +1,9 @@
-import {
-    Component,
-    defineComponent,
-    repeat,
-    state,
-    tpl,
-} from '@neuralfog/elemix';
+import { Component, tpl } from '@neuralfog/elemix';
+import { repeat } from '@neuralfog/elemix/directives';
 import type { Template } from '@neuralfog/elemix/types';
 
-import { store } from '#src/signals/signal';
-import { config } from '#src/signals/config';
+import { store } from '#src/store/store';
+import { config } from '#src/store/config';
 
 import reset from '#src/scss/reset.scss?inline';
 import css from '#src/components/MainApp.scss?inline';
@@ -16,13 +11,19 @@ import css from '#src/components/MainApp.scss?inline';
 import '#src/components/AppHeader';
 import '#src/components/AppCard';
 
+// #component
 export class MainApp extends Component {
-    static styles = [reset, css];
+    // #styles
+    resetStyles = reset;
 
-    state = state({
+    // #styles
+    appStyles = css;
+
+    // #state
+    state = {
         color: 'color',
         size: 'size',
-    });
+    };
 
     run = (): void => {
         if (config.props) {
@@ -30,45 +31,34 @@ export class MainApp extends Component {
             this.state.size = (Math.random() + 1).toString(36).substring(7);
         }
 
-        if (config.signal) {
+        if (config.store) {
             store.name = (Math.random() + 1).toString(36).substring(7);
         }
 
         requestAnimationFrame(this.run);
     };
 
-    onMount(): void {
+    // #mount
+    start(): void {
         window.addEventListener('error', (ev) => {
             console.log(ev);
         });
         this.run();
     }
 
-    private indices: number[] = [];
-    private indicesCount = 0;
-
-    private getIndices(count: number): number[] {
-        if (count === this.indicesCount) return this.indices;
-        this.indicesCount = count;
-        this.indices = Array.from({ length: count }, (_, i) => i);
-        return this.indices;
-    }
-
     template = (): Template => tpl`
         <app-header></app-header>
         <div class="grid">
           ${repeat(
-              this.getIndices(config.componentCount),
-              (_, index) =>
+              Array.from({ length: config.componentCount }, (_, i) => i),
+              (index) =>
                   tpl`<app-card
                       :index=${index}
                       :color=${this.state.color}
                       :size=${this.state.size}
                   ></app-card>`,
-              (val) => String(val),
+              (index) => String(index),
           )}
         </div>
     `;
 }
-
-defineComponent('main-app', MainApp);

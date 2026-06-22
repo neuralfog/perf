@@ -1,10 +1,10 @@
-import { Component, defineComponent, state, tpl } from '@neuralfog/elemix';
+import { Component, tpl } from '@neuralfog/elemix';
 import type { Template } from '@neuralfog/elemix/types';
 
-import { store } from '#src/signals/signal';
+import { store } from '#src/store/store';
 import reset from '#src/scss/reset.scss?inline';
 import css from '#src/components/AppCard.scss?inline';
-import { config } from '#src/signals/config';
+import { config } from '#src/store/config';
 
 type AppCardProps = {
     color: string;
@@ -12,12 +12,18 @@ type AppCardProps = {
     index: number;
 };
 
+// #component
 export class AppCard extends Component<AppCardProps> {
-    static styles = [reset, css];
+    // #styles
+    resetStyles = reset;
 
-    state = state({
+    // #styles
+    cardStyles = css;
+
+    // #state
+    state = {
         string: 'State Value',
-    });
+    };
 
     animationFrameId: number | null = null;
 
@@ -28,11 +34,13 @@ export class AppCard extends Component<AppCardProps> {
         this.animationFrameId = requestAnimationFrame(this.run);
     };
 
-    onMount(): void {
+    // #mount
+    start(): void {
         this.run();
     }
 
-    onDispose(): void {
+    // #dispose
+    stop(): void {
         if (this.animationFrameId !== null) {
             cancelAnimationFrame(this.animationFrameId);
             this.animationFrameId = null;
@@ -42,7 +50,7 @@ export class AppCard extends Component<AppCardProps> {
     template = (): Template => tpl`<div class="card">
         <span class="index">${this.props.index + 1}</span>
         <div class="field">
-            <span class="label">Signal</span>
+            <span class="label">Store</span>
             <span class="value accent">${store.name}</span>
         </div>
         <div class="field">
@@ -58,5 +66,3 @@ export class AppCard extends Component<AppCardProps> {
         </div>
     </div>`;
 }
-
-defineComponent('app-card', AppCard);

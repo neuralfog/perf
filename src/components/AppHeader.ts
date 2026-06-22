@@ -1,21 +1,24 @@
-import { Component, defineComponent, tpl } from '@neuralfog/elemix';
+import { Component, tpl } from '@neuralfog/elemix';
 import type { Template } from '@neuralfog/elemix/types';
 
 import reset from '#src/scss/reset.scss?inline';
 import css from '#src/components/AppHeader.scss?inline';
-import { config } from '#src/signals/config';
+import { config } from '#src/store/config';
 
+// #component
 export class AppHeader extends Component {
-    static styles = [reset, css];
+    // #styles
+    resetStyles = reset;
+
+    // #styles
+    headerStyles = css;
 
     onCount = (e: Event): void => {
-        config.componentCount = Number(
-            (e.target as HTMLInputElement).value,
-        );
+        config.componentCount = Number((e.target as HTMLInputElement).value);
     };
 
-    toggleSignal = (): void => {
-        config.signal = !config.signal;
+    toggleStore = (): void => {
+        config.store = !config.store;
     };
 
     toggleState = (): void => {
@@ -44,9 +47,9 @@ export class AppHeader extends Component {
             </label>
             <div class="toggles">
                 <button
-                    class=${config.signal ? 'pill on' : 'pill'}
-                    @click=${this.toggleSignal}
-                >Signal</button>
+                    class=${config.store ? 'pill on' : 'pill'}
+                    @click=${this.toggleStore}
+                >Store</button>
                 <button
                     class=${config.internalState ? 'pill on' : 'pill'}
                     @click=${this.toggleState}
@@ -59,5 +62,3 @@ export class AppHeader extends Component {
         </div>
     </header>`;
 }
-
-defineComponent('app-header', AppHeader);

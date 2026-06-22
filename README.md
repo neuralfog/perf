@@ -21,7 +21,7 @@ Templates are compiled by [`@neuralfog/elemix-vite`](https://github.com/neuralfo
 ## Controls
 
 - **Components** — how many cards to render.
-- **Signal** — animate the shared store every frame.
+- **Store** — animate the shared store every frame.
 - **State** — animate each card's internal state every frame.
 - **Props** — animate props pushed from the parent every frame.
 
